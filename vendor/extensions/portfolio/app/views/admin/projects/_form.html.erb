@@ -7,9 +7,21 @@
     <label>Project URL </label><%= text_field "project", "url", :class => 'textbox', :size => 50, :maxlength => 255 %>
   </p>
   
-  <p>                                                                                                                           
-	<label>Upload a Project Image </label><%= file_column_field "project", "thumb" %>                                                                
-	</p>
+  <% if @project.thumb? %>
+    <p>
+      <label>Project Thumb</label>
+    </p>
+    <p>
+      <%= image_tag url_for_file_column(@project, "thumb", "thumb") %>
+    </p>
+    <p>                                                                                                                           
+  	  <label>Upload New Project Thumb </label><br /><%= file_column_field "project", "thumb" %>                                                                
+  	</p>
+  <% else %> 
+    <p>                                                                                                                           
+      <label>Upload a Project Thumb </label><br /><%= file_column_field "project", "thumb" %>                                                                
+    </p>
+  <% end %>
 	
   <p>
     <label>Is this an Active Project?</label> <%= check_box "project", "active", :value => 1, :checked => true %>
