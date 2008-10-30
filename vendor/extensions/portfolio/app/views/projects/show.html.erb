@@ -1,0 +1,35 @@
+<% content_for :project_body do %>
+
+<%= link_to('Previous', :id => @prev) unless @prev.nil? %>  <%= link_to('Next',  :id => @next) unless @next.nil? %>
+
+<div id="work">
+  <p>
+    <strong>Project: </strong><%=h @project.title %>
+  </p>
+  
+  <% if @project.url? %>
+  <p>
+    <strong>Website URL: </strong><%=h @project.url %>
+  </p>
+<% end %>
+	<p><%= @project.body %></p>
+
+<div id="gallery">
+		<ul>
+		<% @project.images.each do |image| %>                                          
+	  	<li id="image_<%= image.id %>" class="position_<%= image.position %>">
+				<%= image_tag url_for_file_column(image, "location", "thumb") %>
+			</li>
+		<% end %>
+		</ul>
+</div>
+
+	<script type="text/javascript" charset="utf-8">
+  			//flash gallery
+  			var so = new SWFObject("/swf/slideshow.swf", "gallery", "666", "357", "8", "");
+  			so.addParam("wmode", "transparent");
+  			so.addVariable("xml_path", "/image/<%= @project.id %>")
+  			so.write("gallery");
+  </script>
+  
+  <% end %>

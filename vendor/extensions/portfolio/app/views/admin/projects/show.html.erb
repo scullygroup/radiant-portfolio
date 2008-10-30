@@ -1,0 +1,56 @@
+<% include_javascript 'dragdrop' %>
+<% include_stylesheet 'admin/application' %>
+
+<div id="work">
+  
+  <p><%= image_tag url_for_file_column(@project, "thumb", "thumb") %>
+    <strong>Project: </strong><%=h @project.title %>
+  </p>
+  
+  <p>
+    <strong>Project URL: </strong><%= @project.url %>
+  </p>
+  
+  <p><strong>Tags</strong>
+  <ul>
+    <% for tag in @project.tags %>
+  <li><%= tag.tag %></li>
+  	<% end %>
+  </ul>
+  </p>
+
+	<p><%= @project.body %></p>
+
+	<div class="content-links">
+		<ul>                                                                        
+			<li><%= link_to "#{image_tag ("admin/icons-small/edit.png", :border =>0, :title => 'Edit')}Edit", "/admin/projects/edit/#{params[:id]}" %></li>
+			<li><%= link_to "#{image_tag ("admin/icons-small/delete.png", :border =>0, :title => 'Delete')}Delete", "/admin/projects/remove/#{params[:id]}", :confirm => "Are you sure?" %></li>
+		</ul>                                                                       
+	</div>                                                                             
+</div><!-- end work -->                                                                
+                                                                                       
+<div id="images">                                                                      
+	<% form_for (:image, :url => '/admin/images/create', :html => {:multipart => true}) do |f| %>                                           
+			<%= f.hidden_field :project_id, :value => @project.id %>                   
+		  <p>                                                                          
+		    Upload a Project Image<br />                                               
+			<%= file_column_field "image", "location" %><%= f.submit "Upload" %>
+		  </p>                                                                         
+	<% end %>                                                                          
+
+<p><em>Arrange the thumbnails by dragging them in the order you wish.<br />The leftmost thumbnail bordered in red, will become the cover project.</em></p>
+
+	<ul id="image-list">                               
+		<% @project.images.each do |image| %>                                          
+	  		<li id="image_<%= image.id %>" class="position_<%= image.position %>">
+				<%= link_to "#{image_tag("admin/icons-small/delete.png")}", "/admin/images/remove/#{image.id}", :confirm => "Are you sure?" %><br />
+				<%= image_tag url_for_file_column(image, "location", "thumb") %>
+			</li>
+		<% end %>
+	</ul>
+	<%= sortable_element 'image-list',
+		:url => "/admin/projects/update_positions/#{params[:id]}",
+		:constraint => false,
+		:complete => visual_effect(:highlight, 'image-list')
+	%>
+</div><!-- end images -->

@@ -1,0 +1,16 @@
+<% include_stylesheet 'admin/application' %>
+
+<div id="header"><h1>Tags</h1></div>
+
+<div id="new-page"><%= link_to "#{image_tag ("admin/icons-small/add.png")} Add New Tag", '/admin/tags/new' %></div>
+
+<% for tag in @tags %>
+    <h2 class="content-title"><%=h tag.tag %></h2>
+    
+	<div class="content-links">
+		<ul>
+			<li><%= link_to "#{image_tag ("admin/icons-small/edit.png", :border =>0, :title => 'Edit')}Edit", tag_edit_url(:id => tag.id) %></li>
+			<li><%= link_to "#{image_tag ("admin/icons-small/delete.png", :border =>0, :title => 'Delete')}Delete", tag_remove_url(:id => tag.id), :confirm => "Are you sure?" %></li>
+		</ul>
+	</div>
+<% end %>

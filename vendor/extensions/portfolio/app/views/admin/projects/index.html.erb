@@ -1,0 +1,20 @@
+<% include_stylesheet 'admin/application' %>
+
+<div id="header"><h1>Projects</h1></div>
+
+<div id="new-page">
+  <p><%= link_to "#{image_tag ("admin/icons-small/add.png")} Add New Project", '/admin/projects/new' %></p>
+  <p><%= link_to "#{image_tag ("admin/icons-small/ok.png")} Show All Tags", '/admin/tags' %> <%= link_to "#{image_tag ("admin/icons-small/add.png")} Add New Tag", '/admin/tags/new' %></p>
+</div>
+
+<% for project in @projects %>
+    <h2 class="content-title"><%=h project.title %></h2>
+    
+	<div class="content-links">
+		<ul>
+		  <li><%= link_to "#{image_tag ("admin/icons-small/ok.png", :border =>0, :title => 'Images')}Images", project_show_url(:id => project.id) %></li>
+			<li><%= link_to "#{image_tag ("admin/icons-small/edit.png", :border =>0, :title => 'Edit')}Edit", project_edit_url(:id => project.id) %></li>
+			<li><%= link_to "#{image_tag ("admin/icons-small/delete.png", :border =>0, :title => 'Delete')}Delete", project_remove_url(:id => project.id), :confirm => "Are you sure?" %></li>
+		<ul>
+	</div>
+<% end %>
