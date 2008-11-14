@@ -1,8 +1,0 @@
-<% include_stylesheet 'admin/application' %>
-<h1>Edit: <%= @project.title %></h1>
-
-<% form_for(:project, :url => "/admin/projects/update/#{params[:id]}", :html => {:multipart => true}) do %>
- 
-<%= render :partial => 'form' %>
-
-<% end %>

@@ -1,4 +1,4 @@
-em {font-size: 12px; font-style: italic;}
+em {font-size: 10px; font-style: italic;}
 
 h1 {
 	font-weight: bold;
@@ -77,7 +77,7 @@ a:hover {color: #000; text-decoration: none;}
 }
 
 .content-links ul li {
-	width: 35px;
+	width: 30px;
 	float: left;
 	font-size: 10px;
 	text-align: center;
@@ -94,21 +94,31 @@ a:hover {color: #000; text-decoration: none;}
 	margin:0;
 }
 
+#work .description{
+	border:1px solid #DDDDDD;
+	background-color:#EEEEEE;
+	padding:15px;
+}
+
+#images {
+	clear:both;
+}
+
 .project-images {
   float: left;
   width: 250px;
 }
 
 #image-list {
-  	margin-top:25px;
-  	width: 900px; 
-  	background: url('/images/admin/background.gif') no-repeat 41px 50%;
-  	overflow: hidden;
-  	padding-bottom: 25px;
-	list-style-type: none;
-}
+  margin-top:25px;
+  width: 900px; 
+  background: url('../images/background.gif') no-repeat top left;
+  overflow: hidden;
+  padding-bottom: 25px;
+list-style-type: none;
+  }
 
 #image-list li {
-	float: left;
-	padding: 5px 10px 0 9px;
+float: left;
+padding: 5px 10px 0 9px;
 }

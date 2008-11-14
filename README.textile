@@ -1,7 +1,7 @@
 h1. Radiant CMS portfolio management tool extension
 
-Version 0.5
-last update 10/30/08
+Version 1.0
+last update 11/14/08
 
 A straight-forward project management gallery originally designed for creative agencies to display their work on a Radiant CMS-based website. 
 
@@ -24,12 +24,14 @@ h1. Requirements
 
 h1. How to Install
 
+* In your Radiant project, cd vendor/extensions
+* git clone git://github.com/pilu/radiant-portfolio.git portfolio
 * Move public/swf into /public/
 * Move public/javascripts/swfobject15.js in public/javascripts/
 * Move public/stylesheets/admin/application.css into public/stylesheets/admin/
 * Move public/images/admin/icons-small into public/images/admin/
-* Move vendor/extensions/portfolio extension into vendor/extensions/
 * run rake:db:migrate:extensions
+* Be sure to remove the public directory included here after you have moved all the files up into the main Radiant public directory
 
 h1. Notes
 

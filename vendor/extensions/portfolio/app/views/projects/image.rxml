@@ -1,9 +1,0 @@
-xml.instruct! :xml, :version=>"1.0"
-xml.slideshow(:shownumbers => "true", :slidedelay => "5", :transitiontime =>"1"){
-  xml.pictures{
-    #xml.project_id(@project.id)
-    for image in @project.images
-      xml.image(:url => url_for_file_column(image, "location", "medium"))
-    end
-  }
-}
