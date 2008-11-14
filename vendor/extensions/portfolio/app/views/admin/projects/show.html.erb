@@ -2,9 +2,13 @@
 <% include_stylesheet 'admin/application' %>
 
 <div id="work">
+  <h1><%=h @project.title %></h1>
+  <p>
+    <strong>Company: </strong><%= @project.company %>
+  </p>
   
-  <p><%= image_tag url_for_file_column(@project, "thumb", "thumb") %>
-    <strong>Project: </strong><%=h @project.title %>
+  <p>
+  <% if @project.thumb? %><%= image_tag url_for_file_column(@project, "thumb", "thumb") %><% end %>  
   </p>
   
   <p>
@@ -19,7 +23,8 @@
   </ul>
   </p>
 
-	<p><%= @project.body %></p>
+  <h3>Description</h3>
+  <p class="description"><%= @project.body %></p>
 
 	<div class="content-links">
 		<ul>                                                                        

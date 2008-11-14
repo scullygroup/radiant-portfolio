@@ -1,35 +1,45 @@
-<% content_for :project_body do %>
-
-<%= link_to('Previous', :id => @prev) unless @prev.nil? %>  <%= link_to('Next',  :id => @next) unless @next.nil? %>
-
-<div id="work">
-  <p>
-    <strong>Project: </strong><%=h @project.title %>
-  </p>
-  
-  <% if @project.url? %>
-  <p>
-    <strong>Website URL: </strong><%=h @project.url %>
-  </p>
+<% content_for :p_company do %>
+  <%=h @project.company %>
 <% end %>
-	<p><%= @project.body %></p>
 
-<div id="gallery">
-		<ul>
-		<% @project.images.each do |image| %>                                          
-	  	<li id="image_<%= image.id %>" class="position_<%= image.position %>">
-				<%= image_tag url_for_file_column(image, "location", "thumb") %>
-			</li>
-		<% end %>
-		</ul>
-</div>
+<% content_for :p_title do %>
+  <%=h @project.title %>
+<% end %>
+
+<% content_for :p_body do %>
+  <%= @project.body %>
+  <% if @project.url? %>
+    <p>
+      <strong>Website URL: </strong><%=h @project.url %>
+    </p>
+  <% end %>
+<% end %>
+
+<% content_for :p_images do %>
+  <div id="portfolio-image">
+  		<% @project.images.each do |image| %>                                          
+  	  	<li id="image_<%= image.id %>" class="position_<%= image.position %>">
+  				<%= image_tag url_for_file_column(image, "location", "thumb") %>
+  			</li>
+  		<% end %>
+  </div>
 
 	<script type="text/javascript" charset="utf-8">
   			//flash gallery
-  			var so = new SWFObject("/swf/slideshow.swf", "gallery", "666", "357", "8", "");
+  			var so = new SWFObject("/swf/slideshow.swf", "gallery", "500", "400", "8", "");
   			so.addParam("wmode", "transparent");
   			so.addVariable("xml_path", "/image/<%= @project.id %>")
-  			so.write("gallery");
+  			so.write("portfolio-image");
   </script>
-  
-  <% end %>
+<% end %>
+
+<% content_for :p_previous do %>
+
+  <span class="button-left"><%= link_to("#{image_tag ("/images/project-prev.gif", :border =>0, :title => 'Previous Project')}", :id => @prev) unless @prev.nil? %></span>
+
+<% end %>
+
+<% content_for :p_next do %>
+  <span class="button-right"><%= link_to("#{image_tag ("/images/project-next.gif", :border =>0, :title => 'Next Project')}", :id => @next) unless @next.nil? %></span>
+
+<% end %>

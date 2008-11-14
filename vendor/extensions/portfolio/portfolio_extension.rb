@@ -15,9 +15,6 @@ class PortfolioExtension < Radiant::Extension
     map.connect 'image/:id', :controller => "projects", :action => "image"
     
     map.resources :projects
-    #
-    #  TODO map project views to xml just like I did for ACM, use new projects_controller.rb and create a .rxml view 
-    #
     
     map.with_options(:controller => 'admin/projects') do |project|
       project.project_index           'admin/projects',             :action => 'index'
@@ -54,6 +51,7 @@ class PortfolioExtension < Radiant::Extension
   def activate
     admin.tabs.add "Portfolio", "/admin/projects", :after => "Layouts", :visibility => [:all]
     Page.send :include, PortfolioTags
+    NoCachePage
   end
   
   def deactivate

@@ -6,14 +6,5 @@ class Project < ActiveRecord::Base
          :thumb => {:size => "150x100", :name => "thumb"}
          }
        }
-   
-   # def self.previous
-   #      Project.find(:first, :conditions => ["id < ?", self.id], :order => 'id DESC')
-   #    end
-   #    
-   #    def self.next
-   #      Project.find(:first, :conditions => ["id > ?", self.id], :order => 'id ASC')
-   #    end
-   
 end
 

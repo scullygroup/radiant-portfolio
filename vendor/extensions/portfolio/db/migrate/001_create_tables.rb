@@ -16,6 +16,7 @@ class CreateTables < ActiveRecord::Migration
     
     create_table :projects do |t|
       t.string :title
+      t.string :company
       t.string :url
       t.text :body
       t.string :thumb
