@@ -1,0 +1,7 @@
+<h1>Edit: <%= @tag.tag %></h1>
+
+<% form_for(:project, :url => "/admin/tags/update/#{params[:id]}") do %>
+
+<%= render :partial => 'form' %>
+
+<% end %>

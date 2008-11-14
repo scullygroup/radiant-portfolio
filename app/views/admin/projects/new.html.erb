@@ -1,0 +1,8 @@
+<% include_stylesheet 'admin/application' %>
+<h1>New Project</h1>
+
+<% form_for(:project, :url => 'create', :html => {:multipart => true}) do %>
+
+<%= render :partial => 'form' %>
+
+<% end %>

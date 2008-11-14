@@ -1,0 +1,50 @@
+<p>
+  <label>Project Title </label><%= text_field "project", "title", :class => 'textbox', :size => 50, :maxlength => 255 %>
+</p>
+
+<p>
+  <label>Company  </label><%= text_field "project", "company", :class => 'textbox', :size => 50, :maxlength => 255 %>
+</p>
+
+<p>
+  <label>Project URL </label><%= text_field "project", "url", :class => 'textbox', :size => 50, :maxlength => 255 %>
+</p>
+
+<% if @project.thumb? %>
+  
+  <p><label>Project Thumb</label></p>
+  <p>
+    <%= image_tag url_for_file_column(@project, "thumb", "thumb") %>
+  </p>
+  <p>                                                                                                                           
+	  <label>Upload New Project Thumb </label><br /><%= file_column_field "project", "thumb" %>                                                                
+	</p>
+<% else %> 
+<p>                                                                                                                           
+  <label>Upload a Project Thumb </label><br /><%= file_column_field "project", "thumb" %>                                                                
+</p>
+<% end %>
+
+<p>
+  <label>Is this an Active Project?</label> <%= check_box "project", "active", :value => 1, :checked => true %>
+</p>
+
+<p>
+	<strong>Tags</strong><br />
+	<% for tag in Tag.find(:all) %>
+	<%= check_box_tag "project[tag_ids][]", tag.id, @project.tags.include?(tag), { :id => "project_tag_ids_"+ tag.id.to_s} %>
+	<%= tag.tag %>
+<% end %>
+</p>
+
+<p>
+  <label>Body</label><br />
+  <%= text_area "project", "body", :class => 'textbox', :maxlength => 255 %>  
+</p>
+
+<p class="buttons">
+      <%= save_model_button(@project) %>
+      or 
+      <%= link_to "Cancel", {:action => :index} %>
+</p>
+
