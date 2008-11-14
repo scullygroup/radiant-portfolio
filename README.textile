@@ -25,7 +25,7 @@ h1. Requirements
 h1. How to Install
 
 * In your Radiant project, cd vendor/extensions
-* git clone git://github.com/pilu/radiant-portfolio.git portfolio
+* git clone git@github.com:scullygroup/radiant-portfolio.git portfolio
 * Move public/swf into /public/
 * Move public/javascripts/swfobject15.js in public/javascripts/
 * Move public/stylesheets/admin/application.css into public/stylesheets/admin/
