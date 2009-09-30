@@ -1,0 +1,15 @@
+- include_stylesheet 'admin/application'
+%h1
+  Tags
+#new-page
+  = link_to "#{image_tag ("admin/icons-small/add.png")} Add New Tag", '/admin/tags/new'
+
+- for tag in @tags
+  %h2.content-title
+    = h tag.tag
+  .content-links
+    %ul
+      %li
+        = link_to "#{image_tag ("admin/icons-small/edit.png", :border =>0, :title => 'Edit')}Edit", tag_edit_url(:id => tag.id)
+      %li
+        = link_to "#{image_tag ("admin/icons-small/delete.png", :border =>0, :title => 'Delete')}Delete", tag_remove_url(:id => tag.id), :confirm => "Are you sure?"

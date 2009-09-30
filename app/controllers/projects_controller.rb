@@ -4,9 +4,9 @@ class ProjectsController < ApplicationController
   radiant_layout 'Project'
   
   def index
-      @projects = Project.find(:all)
-      render :layout => false
-    end
+    @projects = Project.find(:all)
+    render :layout => false
+  end
   
   def show
     @project = Project.find(params[:id])
@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
     @next ||= Project.find(:first, :conditions => ["id > ?", params[:id]], :order => 'id ASC')
     
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.xml  { render :xml => @projects }
     end
   end

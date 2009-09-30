@@ -1,0 +1,56 @@
+- include_javascript 'dragdrop'
+- include_stylesheet 'admin/application'
+#work
+  %h1
+    = h @project.title
+  %p
+    %strong
+      Company:
+    = @project.company
+  %p
+    - if @project.thumb?
+      = image_tag @project.thumb.url(:thumb)
+  %p
+    %strong
+      Project URL:
+    = @project.url
+  %p
+    %strong
+      Tags
+  %ul
+    - for tag in @project.tags
+      %li
+        = tag.tag
+        
+  %h3
+    Description
+  %p.description
+    = @project.body
+  .content-links
+    %ul
+      %li
+        = link_to "#{image_tag ("admin/icons-small/edit.png", :border =>0, :title => 'Edit')}Edit", "/admin/projects/edit/#{params[:id]}"
+      %li
+        = link_to "#{image_tag ("admin/icons-small/delete.png", :border =>0, :title => 'Delete')}Delete", "/admin/projects/remove/#{params[:id]}", :confirm => "Are you sure?"
+
+#images
+  - form_for (:image, :url => '/admin/portfolio_images/create', :html => {:multipart => true}) do |f|
+    = f.hidden_field :project_id, :value => @project.id
+    %p
+      Upload a Project Image
+      %br
+      = f.file_field :image
+      = f.submit "Upload"
+
+  %p
+    %em
+      Arrange the thumbnails by dragging them in the order you wish.
+      %br
+      The leftmost thumbnail bordered in red, will become the cover project.
+  %ul#image-list
+    - @project.portfolio_images.each do |image|
+      %li{ :class => "position_#{image.position}", :id => "image_#{image.id}" }
+        = link_to "#{image_tag("admin/icons-small/delete.png")}", "/admin/images/remove/#{image.id}", :confirm => "Are you sure?"
+        %br
+        = image_tag image.image.url(:thumb)
+  = sortable_element 'image-list', :url => "/admin/projects/update_positions/#{params[:id]}", :constraint => false, :complete => visual_effect(:highlight, 'image-list')

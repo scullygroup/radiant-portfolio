@@ -1,0 +1,9 @@
+- form_for(:tag, :url => "/admin/tags/#{action}/#{params[:id]}") do |f|
+  %p
+    %label
+      Tag Name:
+    = f.text_field :tag, :class => 'textbox', :size => 50, :maxlength => 255
+  %p.buttons
+    = save_model_button(@tag)
+    or
+    = link_to "Cancel", {:action => :index}

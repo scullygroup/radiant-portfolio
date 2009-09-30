@@ -1,0 +1,32 @@
+- content_for :p_company do
+  = h @project.company
+
+- content_for :p_title do
+  = h @project.title
+
+- content_for :p_thumb do
+  = image_tag @project.thumb.url(:thumb)
+    
+- content_for :p_body do
+  = @project.body
+  - if @project.url?
+    %p
+      %strong
+        Website URL:
+      = h @project.url
+
+- content_for :p_images do
+  #portfolio-image
+    - @project.portfolio_images.each do |image|
+      %li{ :class => "position_#{image.position}", :id => "image_#{image.id}" }
+        = image_tag image.image.url(:thumb)
+  
+  = render :partial => "/projects/swfobject", :locals => { :project_id => "#{@project.id}" }
+
+- content_for :p_previous do
+  %span.button-left
+    = link_to("#{image_tag ("/images/project-prev.gif", :border =>0, :title => 'Previous Project')}", :id => @prev) unless @prev.nil?
+
+- content_for :p_next do
+  %span.button-right
+    = link_to("#{image_tag ("/images/project-next.gif", :border =>0, :title => 'Next Project')}", :id => @next) unless @next.nil?

@@ -1,43 +1,60 @@
-h1. Radiant CMS portfolio management tool extension
-
-Version 1.0
-last update 11/14/08
+h1. Radiant CMS Portfolio Management Tool
 
 A straight-forward project management gallery originally designed for creative agencies to display their work on a Radiant CMS-based website. 
 
 h1. Features
 
-Allows you to create a portfolio gallery in Radiant and display on a page.
-In addition to naming the project, providing a url, and main description, the tool also allows you to upload supporting images of the project complete with drag-and-drop order sorting.
-Projects can be tagged to categorize them on the front-end display.
-Front-end display includes Previous/Next functionality to navigate between projects.
-Image gallery is pulled-in to the Flash via and XML file produced in the image.rxml view in app/view/projects.
-Included is index.rxml to provide an xml feed of all project data in the database if you need it.
+* Allows you to create a portfolio gallery in Radiant and display on a page.
+* In addition to naming the project, providing a url, and main description, the tool also allows you to upload supporting images of the project complete with drag-and-drop order sorting.
+* Projects can be tagged to categorize them on the front-end display.
+* Front-end display includes Previous/Next functionality to navigate between projects.
+* Image gallery is pulled-in to the Flash via and XML file produced in the image.rxml view in app/view/projects.
+* Included is index.rxml to provide an xml feed of all project data in the database if you need it.
 
 h1. Requirements
 
-*Radiant Extensions*
-* shared-layout, http://github.com/radiant/radiant-share-layouts-extension/tree/master
+<p>*Radiant Extensions*
+Shared-Layout, "http://github.com/radiant/radiant-share-layouts-extension":http://github.com/radiant/radiant-share-layouts-extension</p>
 
-*Plugins*
-* file_column, http://www.kanthak.net/opensource/file_column/
+<p>*Imagemagick*<br />
+"http://www.imagemagick.org/script/index.php":http://www.imagemagick.org/script/index.php</p>
+
+<p>*SWFObject*<br />
+"http://blog.deconcept.com/swfobject":http://blog.deconcept.com/swfobject</p>
+
+<p>*Gems/Plugins*<br /> 
+Paperclip, "http://github.com/thoughtbot/paperclip":http://github.com/thoughtbot/paperclip</p>
+Rmagick, "http://rmagick.rubyforge.org":http://rmagick.rubyforge.org
 
 h1. How to Install
 
-* In your Radiant project, cd vendor/extensions
-* git clone git@github.com:scullygroup/radiant-portfolio.git portfolio
-* Move public/swf into /public/
-* Move public/javascripts/swfobject15.js in public/javascripts/
-* Move public/stylesheets/admin/application.css into public/stylesheets/admin/
-* Move public/images/admin/icons-small into public/images/admin/
-* run rake:db:migrate:extensions
-* Be sure to remove the public directory included here after you have moved all the files up into the main Radiant public directory
+Grab the extensions from GitHub and place it in vendor/extensions
+<pre><code>
+  git clone git@github.com:scullygroup/radiant-portfolio.git vendor/extensions/portfolio
+</code></pre>
+
+Run the following commands:
+<pre><code>
+  rake radiant:extensions:portfolio:migrate
+  rake radiant:extensions:portfolio:update
+</code></pre>
 
 h1. Notes
 
-This extension uses of Sean Cribbs excellend radiant-share-layouts-extension (http://github.com/radiant/radiant-share-layouts-extension/tree/master).
+This extension uses Sean Cribbs excellent radiant-share-layouts-extension (http://github.com/radiant/radiant-share-layouts-extension).
+
 The project show view is wrapped in a block like so: 
 <pre><code><% content_for :project_body do %></code></pre>
-In order to invoke the view on a Radiant page, create a layout called "Project" and insert the following radial tag wherever you want the gallery to appear: 
-<pre><code><r:content part="project_body"/></code></pre>
+
+In order to invoke the view on a Radiant page, create a layout called "Project" and insert the following radial tags wherever you want the gallery to appear: 
+<pre><code>
+  <h2><r:content part="p_company"/></h2>
+  <p><strong><r:content part="p_title"/></strong></p>
+  <div id="thumb"><r:content part="p_thumb" /></div>
+  <p><r:content part="p_body"/></p>
+  <div id="images"><r:content part="p_images"/></div>
+</code></pre>
+
+You can, of course, style these however you wish, but this will pull all database fields for the portfolio project.
+
 A particular project is viewed using a RESTful URL (e.g. http://www.mydomain.com/project/:id).  Previous/Next links are also displayed in order to navigate between projects.

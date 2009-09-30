@@ -1,0 +1,55 @@
+- form_for(:project, :url => "/admin/projects/#{action}/#{params[:id]}", :html => {:multipart => true}) do |f|
+  %p
+    %label
+      Project Title
+    = f.text_field :title, :class => 'textbox', :size => 50, :maxlength => 255
+  %p
+    %label
+      Company
+    = f.text_field :company, :class => 'textbox', :size => 50, :maxlength => 255
+  %p
+    %label
+      Project URL
+    = f.text_field :url, :class => 'textbox', :size => 50, :maxlength => 255
+  - if "#{controller.action_name}" == "edit" && @project.thumb?
+    %p
+      %label
+        Project Thumb
+    %p
+      = image_tag @project.thumb.url(:thumb)
+    %p
+      %label
+        Upload New Project Thumb
+      %em
+        This will be the "cover image" for the project
+      %br
+      = f.file_field :thumb
+  - else
+    %p
+      %label
+        Upload a Project Thumb
+      %em
+        This will be the "cover image" for the project
+      %br
+      = f.file_field :thumb
+
+  %p
+    %label
+      Is this an Active Project?
+    = f.check_box :active, :value => 1, :checked => true
+  %p
+    %strong
+      Tags
+    %br
+    - for tag in Tag.find(:all)
+      = check_box_tag "project[tag_ids][]", tag.id, @project.tags.include?(tag), { :id => "project_tag_ids_"+ tag.id.to_s}
+      = tag.tag
+  %p
+    %label
+      Body
+    %br
+    = f.text_area :body, :class => 'textbox', :maxlength => 255
+  %p.buttons
+    = save_model_button(@project)
+    or
+    = link_to "Cancel", {:action => :index}

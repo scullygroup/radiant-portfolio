@@ -2,7 +2,7 @@
 # require_dependency 'application'
 
 class PortfolioExtension < Radiant::Extension
-  version "1.0"
+  version "2.0"
   description "A Radiant extension that allows you to manage a portfolio gallery"
   url "http://www.scullytown.com"
   
@@ -12,7 +12,7 @@ class PortfolioExtension < Radiant::Extension
     #map.connect 'projects', :url => '/projects', :controller => "site", :action => "show_page"
     map.connect 'projects', :controller => "projects", :action => "index"
     map.connect 'project/:id', :controller => "projects", :action => "show"
-    map.connect 'image/:id', :controller => "projects", :action => "image"
+    map.connect 'portfolio_image/:id', :controller => "projects", :action => "image"
     
     map.resources :projects
     
@@ -27,14 +27,14 @@ class PortfolioExtension < Radiant::Extension
       project.project_remove          'admin/projects/remove/:id',  :action => 'destroy'
     end
     
-    map.with_options(:controller => 'admin/images') do |image|
-      image.image_index           'admin/images',             :action => 'index'
-      image.image_show            'admin/images/show/:id',    :action => 'show'   
-      image.image_new             'admin/images/new',         :action => 'new'
-      image.image_create          'admin/images/create',      :action => 'create'
-      image.image_edit            'admin/images/edit/:id',    :action => 'edit'
-      image.image_update          'admin/images/update/:id',  :action => 'update'   
-      image.image_remove          'admin/images/remove/:id',  :action => 'destroy'
+    map.with_options(:controller => 'admin/portfolio_images') do |image|
+      image.image_index           'admin/portfolio_images',             :action => 'index'
+      image.image_show            'admin/portfolio_images/show/:id',    :action => 'show'   
+      image.image_new             'admin/portfolio_images/new',         :action => 'new'
+      image.image_create          'admin/portfolio_images/create',      :action => 'create'
+      image.image_edit            'admin/portfolio_images/edit/:id',    :action => 'edit'
+      image.image_update          'admin/portfolio_images/update/:id',  :action => 'update'   
+      image.image_remove          'admin/portfolio_images/remove/:id',  :action => 'destroy'
     end
     
     map.with_options(:controller => 'admin/tags') do |tag|

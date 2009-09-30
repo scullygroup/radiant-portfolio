@@ -12,7 +12,7 @@ xml.container {
 
   for project in @projects
   
-    xml.piece(:href => "/project/#{project.id}", :thumb => url_for_file_column(project, "thumb"), :title => project.title, :stroke => "0x444444", :itemid => project.id) {
+    xml.piece(:href => "/project/#{project.id}", :thumb => project.thumb.url, :title => project.title, :stroke => "0x444444", :itemid => project.id) {
         # xml.title(project.title)
         #     xml.url(project.url)
         #     xml.thumb(project.thumb)

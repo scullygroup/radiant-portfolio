@@ -1,0 +1,25 @@
+- include_stylesheet 'admin/application'
+
+%h1
+  Projects
+  
+#new-page
+  %p
+    = link_to "#{image_tag ("admin/icons-small/add.png")} Add New Project", '/admin/projects/new'
+    |
+    = link_to "#{image_tag ("admin/icons-small/ok.png")} Show All Tags", '/admin/tags'
+    |
+    = link_to "#{image_tag ("admin/icons-small/add.png")} Add New Tag", '/admin/tags/new'
+    
+- for project in @projects
+  %h2.content-title
+    = h project.title
+  .content-links
+    %ul
+      %li
+        = link_to "#{image_tag ("admin/icons-small/ok.png", :border =>0, :title => 'Images')}Images", project_show_url(:id => project.id)
+      %li
+        = link_to "#{image_tag ("admin/icons-small/edit.png", :border =>0, :title => 'Edit')}Edit", project_edit_url(:id => project.id)
+      %li
+        = link_to "#{image_tag ("admin/icons-small/delete.png", :border =>0, :title => 'Delete')}Delete", project_remove_url(:id => project.id), :confirm => "Are you sure?"
+    %ul

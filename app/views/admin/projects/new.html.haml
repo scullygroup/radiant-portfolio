@@ -1,0 +1,4 @@
+- include_stylesheet 'admin/application'
+%h1
+  New Project
+= render :partial => '/admin/projects/form', :locals => { :action => 'create' }

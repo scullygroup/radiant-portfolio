@@ -1,0 +1,19 @@
+%h1
+  Remove Project
+%p
+  Are you sure you want to
+  %strong.warning
+    permanently remove
+  the following project?
+%table#links.index{ :cellspacing => "0", :border => "0", :cellpadding => "0" }
+  %tbody
+    %tr.node.level-1
+      %td.project
+        = image('projects/project', :alt => 'project-icon')
+        = h @project.title
+
+- form_tag do
+  %p.buttons
+    %input.button{ :type => "submit", :value => "Delete Project" }
+    or
+    = link_to 'Cancel', project_index_url
