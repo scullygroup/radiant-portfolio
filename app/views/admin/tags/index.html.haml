@@ -1,9 +1,10 @@
 - include_stylesheet 'admin/application'
-%h1
-  Tags
-#new-page
-  = link_to "#{image_tag ("admin/icons-small/add.png")} Add New Tag", '/admin/tags/new'
 
+= render :partial => '/admin/projects/secondary_nav'
+
+%h1
+  All Tags
+  
 - for tag in @tags
   %h2.content-title
     = h tag.tag

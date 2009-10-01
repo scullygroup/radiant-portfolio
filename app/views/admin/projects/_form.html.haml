@@ -43,7 +43,7 @@
     %br
     - for tag in Tag.find(:all)
       = check_box_tag "project[tag_ids][]", tag.id, @project.tags.include?(tag), { :id => "project_tag_ids_"+ tag.id.to_s}
-      = tag.tag
+      =h tag.tag
   %p
     %label
       Body

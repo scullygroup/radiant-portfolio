@@ -1,31 +1,34 @@
 - include_javascript 'dragdrop'
 - include_stylesheet 'admin/application'
+
+= render :partial => '/admin/projects/secondary_nav'
+
 #work
   %h1
     = h @project.title
   %p
     %strong
       Company:
-    = @project.company
+    =h @project.company
   %p
     - if @project.thumb?
       = image_tag @project.thumb.url(:thumb)
   %p
     %strong
       Project URL:
-    = @project.url
+    =h @project.url
   %p
     %strong
       Tags
   %ul
     - for tag in @project.tags
       %li
-        = tag.tag
+        =h tag.tag
         
   %h3
     Description
   %p.description
-    = @project.body
+    =h @project.body
   .content-links
     %ul
       %li

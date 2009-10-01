@@ -8,7 +8,7 @@
   = image_tag @project.thumb.url(:thumb)
     
 - content_for :p_body do
-  = @project.body
+  =h @project.body
   - if @project.url?
     %p
       %strong
