@@ -70,3 +70,5 @@ In order to invoke the view on a Radiant page, create a layout called "Project" 
 You can, of course, style these however you wish, but this will pull all database fields for the portfolio project.
 
 A particular project is viewed using a RESTful URL (e.g. http://www.mydomain.com/project/:id).  Previous/Next links are also displayed in order to navigate between projects.
+
+Copyright (c) 2009 Scully Group, released under the MIT License
