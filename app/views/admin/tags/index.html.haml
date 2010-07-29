@@ -1,7 +1,5 @@
 - include_stylesheet 'admin/application'
 
-= render :partial => '/admin/projects/secondary_nav'
-
 %h1
   All Tags
   
@@ -11,6 +9,6 @@
   .content-links
     %ul
       %li
-        = link_to "#{image_tag ("admin/icons-small/edit.png", :border =>0, :title => 'Edit')}Edit", tag_edit_url(:id => tag.id)
+        = link_to "#{image_tag ("admin/icons-small/edit.png", :border =>0, :title => 'Edit')}Edit", admin_tag_edit_path(tag.id)
       %li
-        = link_to "#{image_tag ("admin/icons-small/delete.png", :border =>0, :title => 'Delete')}Delete", tag_remove_url(:id => tag.id), :confirm => "Are you sure?"
+        = link_to "#{image_tag ("admin/icons-small/delete.png", :border =>0, :title => 'Delete')}Delete", admin_tag_remove_path(tag.id), :confirm => "Are you sure?"

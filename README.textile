@@ -1,6 +1,8 @@
 h1. Radiant CMS Portfolio Management Tool
 
-A straight-forward project management gallery originally designed for creative agencies to display their work on a Radiant CMS-based website. 
+A straight-forward project management gallery originally designed for creative agencies to display their work on a Radiant CMS-based website.
+
+_Note: this version has been updated for Radiant 0.9.x.  If you are using an older version of Radiant, please checkout the 0.8 branch._
 
 h1. Features
 
@@ -48,9 +50,7 @@ In your template, reference swfobject.js:
 
 Be sure to vendor Paperclip in environment.rb
 <pre><code>
-config.gem 'thoughtbot-paperclip',
-           :lib => 'paperclip',
-           :source => 'http://gems.github.com'
+config.gem 'paperclip'
 </pre></code>
              
 This extension uses Sean Cribbs excellent radiant-share-layouts-extension (http://github.com/radiant/radiant-share-layouts-extension).
@@ -71,4 +71,4 @@ You can, of course, style these however you wish, but this will pull all databas
 
 A particular project is viewed using a RESTful URL (e.g. http://www.mydomain.com/project/:id).  Previous/Next links are also displayed in order to navigate between projects.
 
-Copyright (c) 2009 Scully Group, released under the MIT License
+Copyright (c) 2010 Scully Group, released under the MIT License

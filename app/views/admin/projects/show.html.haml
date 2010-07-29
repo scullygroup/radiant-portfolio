@@ -1,8 +1,6 @@
 - include_javascript 'dragdrop'
 - include_stylesheet 'admin/application'
 
-= render :partial => '/admin/projects/secondary_nav'
-
 #work
   %h1
     = h @project.title
@@ -32,9 +30,9 @@
   .content-links
     %ul
       %li
-        = link_to "#{image_tag ("admin/icons-small/edit.png", :border =>0, :title => 'Edit')}Edit", "/admin/projects/edit/#{params[:id]}"
+        = link_to "#{image_tag ("admin/icons-small/edit.png", :border =>0, :title => 'Edit')}Edit", admin_project_edit_path(params[:id])
       %li
-        = link_to "#{image_tag ("admin/icons-small/delete.png", :border =>0, :title => 'Delete')}Delete", "/admin/projects/remove/#{params[:id]}", :confirm => "Are you sure?"
+        = link_to "#{image_tag ("admin/icons-small/delete.png", :border =>0, :title => 'Delete')}Delete", admin_project_remove_path(params[:id]), :confirm => "Are you sure?"
 
 #images
   - form_for (:image, :url => '/admin/portfolio_images/create', :html => {:multipart => true}) do |f|
@@ -53,7 +51,7 @@
   %ul#image-list
     - @project.portfolio_images.each do |image|
       %li{ :class => "position_#{image.position}", :id => "image_#{image.id}" }
-        = link_to "#{image_tag("admin/icons-small/delete.png")}", "/admin/images/remove/#{image.id}", :confirm => "Are you sure?"
+        = link_to "#{image_tag("admin/icons-small/delete.png")}", admin_image_remove_path(image.id), :confirm => "Are you sure?"
         %br
         = image_tag image.image.url(:thumb)
   = sortable_element 'image-list', :url => "/admin/projects/update_positions/#{params[:id]}", :constraint => false, :complete => visual_effect(:highlight, 'image-list')
